@@ -37,7 +37,7 @@
 </nav>
 
 
-    <center><h1 class="Header_tabla">Instrumentos Disponiles</h1></center>
+    <center><h1 class="Header_tabla">Instrumentos Disponibles</h1></center>
     <center>
     <table class="table table-borderless" id="Tabla-productos" border="1">
         <tr> <!-- Headers de la tabla -->
@@ -45,15 +45,20 @@
             <th>Precio</th>
             <th>Descripcion</th>
             <th>Cantidad</th>
-            <th>Agregar al carrito</th>
         </tr>
         {{#each productos}}
             <tr>
                 <td>{{this.nombre}}</td>
                 <td>{{this.precio}}{{this.moneda}}</td>
                 <td>{{this.Descripcion}}</td>
-                <td><center><input type="number" placeholder="cantidad"></center></td>
-                <td><center><button value="{{this.id}}" onclick='agregarSession(this.value)'>Comprar</button></center></td>
+                <td>
+                    <form action="/agregar-carrito" method="POST">
+                        <input type="hidden" name="productoId" value="{{this.id}}">
+                        <input type="number" name="cantidad" placeholder="cantidad" min="1" max="{{this.cantidad}}" style="width: 50px;">
+                        <br>
+                        <button type="submit" class="btn btn-warning" >Agregar al Carrito <i class="fas fa-cart-plus"></i></button>
+                    </form>
+                </td>
             </tr>
         {{/each}}
     </table></center>

@@ -20,17 +20,11 @@ body {
 
 
 .container-fluid{
-  background-color: #9EF8EE;
+  
   display: flex;
   justify-content: space-between;
   
 }
-
-.container{
-  background-color: #9EF8EE;
-  
-}
-
 
 #Tabla-productos{
   width: 75%;
