@@ -6,6 +6,24 @@
     <script src="https://kit.fontawesome.com/b30f522dc5.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" >Sonidos del Cielo <i class="fas fa-guitar" style="color: #8C503A";></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse justify-content-end navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Log In</a>
+                    </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <h1>Tu Carrito de Compras <i class="fas fa-cart-shopping"></i></h1>
     <table class="table table-striped">
         <thead>
@@ -14,6 +32,7 @@
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
+                <th>Accion</th>
             </tr>
         </thead>
         <tbody>
@@ -23,12 +42,18 @@
                     <td>{{this.nombre}}</td>
                     <td>{{this.precio}}{{this.moneda}}</td>
                     <td>{{this.cantidad}}</td>
+                    <form action="/eliminar-carrito" method="POST">
+                        <td><button type="submit" class="btn btn-danger" onclick="eliminar-carrito({{this.id}})">Eliminar</button></td>
+                    </form>
                 </tr>
             {{/each}}
         </tbody>
     </table>
     <h2>Total: {{total}}{{moneda}}</h2>
-    <button>Procesar Compra</button>
+    <form action="/procesar-compra" method="POST">
+    <button type="submit" class="btn btn-info">Procesar Compra</button>
+    </form>
+    <a href="/" class="btn btn-secondary">Seguir comprando articulos</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

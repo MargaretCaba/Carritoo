@@ -71,6 +71,18 @@ router.post('/agregar-carrito', function(req, res, next) {
   res.redirect('/carrito');
 });
 
+router.post('/eliminar-carrito', function(req, res, next) {
+  const productoId = req.body.productoId;
+  if (req.session.carrito) {
+      req.session.carrito = req.session.carrito.filter(item => item.id !== productoId);
+  }
+  res.redirect('/carrito');
+});
+
+router.get('/gracias', function(req, res, next) {
+  res.render('gracias', {title: "Gracias por tu compra"});
+});
+
 
 router.post('/procesar-compra', function(req, res, next) {
   try {
@@ -88,7 +100,5 @@ router.post('/procesar-compra', function(req, res, next) {
         res.status(500).send('Error al procesar la compra');
       }
     });
-    
-  
 
 module.exports = router;
