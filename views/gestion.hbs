@@ -6,6 +6,45 @@
 </head>
 <body>
     <h1>Gestión de Productos</h1>
+
+    <!-- Agregar producto -->
+<form action="/users/agregar-producto" method="POST">
+    <div class="mb-3">
+        <label for="id" class="form-label">ID</label>
+        <input type="text" class="form-control" id="id" name="id" required>
+    </div>
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+    <div class="mb-3">
+        <label for="precio" class="form-label">Precio</label>
+        <input type="text" class="form-control" id="precio" name="precio" required>
+    </div>
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+    </div>
+    <div class="mb-3">
+        <label for="cantidad" class="form-label">Cantidad</label>
+        <input type="text" class="form-control" id="cantidad" name="cantidad" required>
+    </div>
+    <div class="mb-3">
+        <label for="moneda" class="form-label">Moneda</label>
+        <input type="text" class="form-control" id="moneda" name="moneda" required>
+    </div>
+    <button type="submit" class="btn btn-success">Agregar Producto</button>
+</form>
+
+<!-- Eliminar producto -->
+<form action="/users/eliminar-producto" method="POST">
+    <div class="mb-3">
+        <label for="idEliminar" class="form-label">ID del producto a eliminar</label>
+        <input type="text" class="form-control" id="idEliminar" name="id" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Eliminar Producto</button>
+</form>
+
     <table class="table">
         <thead>
             <tr>
@@ -24,10 +63,6 @@
                     <td>{{this.precio}}{{this.moneda}}</td>
                     <td>{{this.Descripcion}}</td>
                     <td>{{this.cantidad}}</td>
-                    <td>
-                        <button class="btn btn-primary">Editar</button>
-                        <button class="btn btn-danger">Eliminar</button>
-                    </td>
                 </tr>
             {{/each}}
         </tbody>

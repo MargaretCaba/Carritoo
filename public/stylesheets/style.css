@@ -40,3 +40,9 @@ input{
   width: 80%;
   font-size: 13px;
 }
+
+
+#loginForm {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
