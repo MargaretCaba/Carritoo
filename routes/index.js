@@ -2,7 +2,11 @@ var express = require('express');
 var router = express.Router();
 var products = require('../public/javascripts/productos');
 
-/* GET home page. */
+/* 
+ * GET home page.
+ * Si el usuario tiene una sesión activa, renderiza la vista 'login' con el nombre del usuario.
+ * Si no, renderiza la vista 'index' con la lista de productos.
+ */
 router.get('/', function(req, res, next) {
   if (req.session.userName) {
     res.render('login', {
@@ -16,15 +20,26 @@ router.get('/', function(req, res, next) {
   }
 });
 
+/*
+ * Ruta para mostrar la página de inicio.
+ * Renderiza la vista 'index' con la lista de productos.
+ */
 router.get('/index' ,function(req, res, next) {
   res.render('index', { title: "Sonidos",  productos: products});
 });
 
+/*
+ * Ruta para la página de compra.
+ * Renderiza la vista 'compra'.
+ */
 router.get('/compra', function(req, res, next) {
   res.render('compra', { title: "Sonidos" });
 });
 
-// Controlador para manejar las solicitudes GET a /carrito
+/*
+ * Controlador para manejar las solicitudes GET a /carrito.
+ * Calcula el total del carrito y renderiza la vista 'carrito' con el total y los productos del carrito.
+ */
 router.get('/carrito', function(req, res, next) {
   // Calcular el total del carrito
   let total = 0;
@@ -38,10 +53,18 @@ router.get('/carrito', function(req, res, next) {
   res.render('carrito', { title: "Carrito de Compra", carrito: req.session.carrito || [], total: total });
 });
 
+/*
+ * Ruta para la página de inicio de sesión.
+ * Renderiza la vista 'login'.
+ */
 router.get('/login', function(req, res, next) {
   res.render('login', { title: "Sonidos" });
 });
 
+/*
+ * Ruta para agregar productos al carrito.
+ * Agrega un producto al carrito de compras del usuario.
+ */
 router.post('/agregar-carrito', function(req, res, next) {
   // Obtener el ID del producto y la cantidad del cuerpo de la solicitud
   const productoId = req.body.productoId;
@@ -76,6 +99,10 @@ router.post('/agregar-carrito', function(req, res, next) {
   res.redirect('/carrito');
 });
 
+/*
+ * Ruta para eliminar productos del carrito.
+ * Elimina un producto del carrito de compras del usuario.
+ */
 router.post('/eliminar-carrito', function(req, res, next) {
   const productoId = req.body.productoId;
   if (req.session.carrito) {
@@ -84,10 +111,18 @@ router.post('/eliminar-carrito', function(req, res, next) {
   res.redirect('/carrito');
 });
 
+/*
+ * Ruta para la página de agradecimiento.
+ * Renderiza la vista 'gracias'.
+ */
 router.get('/gracias', function(req, res, next) {
   res.render('gracias', { title: "Gracias por tu compra" });
 });
 
+/*
+ * Ruta para procesar la compra.
+ * Procesa la compra, calcula el total y guarda la compra en la lista de compras realizadas.
+ */
 router.post('/procesar-compra', function(req, res, next) {
   try {
     // Obtener los detalles del carrito de la sesión
@@ -119,12 +154,16 @@ router.post('/procesar-compra', function(req, res, next) {
   }
 });
 
-// Función para generar un ID único para la compra
+/*
+ * Función para generar un ID único para la compra.
+ */
 function generateID() {
   return Math.random().toString(36).substr(2, 9);
 }
 
-// Vista para mostrar todos los productos (solo para administradores)
+/*
+ * Vista para mostrar todos los productos (solo para administradores).
+ */
 router.get('/admin/productos', function(req, res, next) {
   if (!req.session.userName || req.session.userName !== 'admin') {
     return res.status(403).send('Acceso denegado');

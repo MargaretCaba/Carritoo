@@ -3,12 +3,16 @@ var router = express.Router();const bcrypt = require('bcrypt');
 const usersModel = require('../models/user');
 const productos = require('../public/javascripts/productos');
 
-/* GET users listing. */
+/*
+ * GET users listing.
+ */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-// Vista para gestionar productos
+/*
+ * Vista para gestionar productos (solo para administradores).
+ */
 router.get('/gestion-productos', function(req, res, next) {
   if (req.session.userName && req.session.userRole === 'admin') {
       const productos = require('../public/javascripts/productos');
@@ -18,6 +22,9 @@ router.get('/gestion-productos', function(req, res, next) {
   }
 });
 
+/*
+ * Ruta para agregar producto.
+ */
 router.post('/agregarProducto', function(req, res, next) {
   const nuevoProducto = {
       id: req.body.id,
@@ -37,6 +44,9 @@ router.post('/agregarProducto', function(req, res, next) {
   res.redirect('/users/gestion');
 });
 
+/*
+ * Ruta para eliminar producto.
+ */
 router.post('/eliminar-producto', function(req, res, next) {
   const productoId = req.body.id;
   
@@ -49,7 +59,9 @@ router.post('/eliminar-producto', function(req, res, next) {
   res.redirect('/users/gestion');
 });
 
-// Vista para ver todas las compras realizadas
+/*
+ * Vista para ver todas las compras realizadas (solo para administradores).
+ */
 router.get('/compras-realizadas', function(req, res, next) {
   if (req.session.userName && req.session.userRole === 'admin') {
       const compras = req.session.compras || [];
