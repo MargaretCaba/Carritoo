@@ -21,7 +21,7 @@ router.post("/", function (req, res, next) {
         if (user) {
         req.session.userName = user.username;
         req.session.userRole = user.role;
-        return res.redirect("/index");
+        return res.redirect("/");
         }
     }
     return res.redirect(303, "/login/bad-login");

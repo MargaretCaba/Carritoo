@@ -12,26 +12,30 @@
 
 <body>
 
-<nav class="navbar navbar-expand-sm bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="" >Sonidos del Cielo <i class="fas fa-guitar" style="color: #8C503A";></i></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alternar navegación">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse justify-content-end navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="carrito">Carrito</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login">Log In</a>
-                </li>
-                    </ul>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="" >Sonidos del Cielo <i class="fas fa-guitar" style="color: #8C503A";></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse justify-content-end navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="carrito">Carrito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/compraHechas">Gestion Compras</a>
+                    </li>
+                    <!--<li class="nav-item">
+                        <a class="nav-link" href="/gestion">Administracion</a>
+                    </li>-->
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 
     <center><h1 class="Header_tabla">Instrumentos Disponibles</h1></center>
@@ -40,16 +44,14 @@
         <tr> <!-- Headers de la tabla -->
             <th>Productos</th>
             <th>Precio</th>
-            <th>Descripcion</th>
             <th>Cantidad</th>
         </tr>
         {{#each productos}}
             <tr>
                 <td>{{this.nombre}}</td>
                 <td>{{this.precio}}{{this.moneda}}</td>
-                <td>{{this.Descripcion}}</td>
                 <td>
-                    <form action="/agregar-carrito" method="POST">
+                    <form action="/carrito/agregar-carrito" method="POST">
                         <input type="hidden" name="productoId" value="{{this.id}}">
                         <input type="number" name="cantidad" placeholder="cantidad" min="1" max="{{this.cantidad}}" style="width: 50px;">
                         <br>

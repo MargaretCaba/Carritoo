@@ -15,8 +15,12 @@
     "express-session": "^1.18.0",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.3.1",
     "morgan": "~1.9.1",
     "nodemon": "^3.1.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "uuid": "^9.0.1"
   }
 }

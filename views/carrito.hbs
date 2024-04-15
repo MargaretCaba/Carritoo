@@ -8,17 +8,24 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/" >Sonidos del Cielo <i class="fas fa-guitar" style="color: #8C503A";></i></a>
+            <a class="navbar-brand" href="" >Sonidos del Cielo <i class="fas fa-guitar" style="color: #8C503A";></i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alternar navegación">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse justify-content-end navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link" href="carrito">Carrito</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="login">Log In</a>
                     </li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/compraHechas">Gestion Compras</a>
                     </li>
+                    <!--<li class="nav-item">
+                        <a class="nav-link" href="/gestion">Administracion</a>
+                    </li>-->
                 </ul>
             </div>
         </div>
@@ -42,9 +49,11 @@
                     <td>{{this.nombre}}</td>
                     <td>{{this.precio}}{{this.moneda}}</td>
                     <td>{{this.cantidad}}</td>
-                    <form action="/eliminar-carrito" method="POST">
-                        <td><button type="submit" class="btn btn-danger" onclick="eliminar-carrito({{this.id}})">Eliminar</button></td>
+                    <form action="/carrito/eliminar-carrito" method="POST">
+                        <input type="hidden" name="productId" value={{this.id}}>
+                        <td><button type="submit" class="btn btn-danger">Eliminar</button></td>
                     </form>
+
                 </tr>
             {{/each}}
         </tbody>
@@ -52,10 +61,10 @@
     <h2>Total: {{total}}{{moneda}}</h2>
         <!-- Formulario para ingresar el nombre del cliente antes de procesar la compra -->
     <div class="container">
-        <form action="/procesar-compra" method="POST">
+        <form action="/carrito/procesar-compra" method="POST">
             <div class="mb-3">
                 <label for="nombreCliente" class="form-label">Nombre del Cliente</label>
-                <input type="text" class="form-control" id="nombreCliente" name="nombreCliente" required>
+                <input type="text" class="form-control" id="nombreCliente" name="nombre" required> <!-- Cambio aquí -->
             </div>
             <button type="submit" class="btn btn-info">Procesar Compra</button>
         </form>

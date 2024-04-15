@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();const bcrypt = require('bcrypt');
 const usersModel = require('../models/user');
-const productos = require('../public/javascripts/productos');
-
+var Producto = require('../models/producto');
 /*
  * GET users listing.
  */
@@ -59,17 +58,7 @@ router.post('/eliminar-producto', function(req, res, next) {
   res.redirect('/users/gestion');
 });
 
-/*
- * Vista para ver todas las compras realizadas (solo para administradores).
- */
-router.get('/compras-realizadas', function(req, res, next) {
-  if (req.session.userName && req.session.userRole === 'admin') {
-      const compras = req.session.compras || [];
-      res.render('compraHechas', { compras: compras });
-  } else {
-      res.redirect('/login');
-  }
-});
+
 
 
 module.exports = router;

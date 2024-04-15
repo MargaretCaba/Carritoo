@@ -5,22 +5,48 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="" >Sonidos del Cielo <i class="fas fa-guitar" style="color: #8C503A";></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse justify-content-end navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="carrito">Carrito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/compraHechas">Gestion Compras</a>
+                    </li>
+                    <!--<li class="nav-item">
+                        <a class="nav-link" href="/gestion">Administracion</a>
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
     <h1>Compras Realizadas</h1>
+
     <table class="table">
         <thead>
             <tr>
                 <th>ID de Compra</th>
                 <th>Productos</th>
-                <th>Total</th>
+                <th>cantidad</th>
                 <th>Cliente</th>
             </tr>
         </thead>
         <tbody>
-            {{#each compras}}
+            {{#each comprasHechas}}
                 <tr>
                     <td>{{this.id}}</td>
-                    <td>{{this.productos}}</td>
-                    <td>{{this.total}}{{this.moneda}}</td>
+                    <td>{{this.producto}}</td>
+                    <td>{{this.cantidad}}</td>
                     <td>{{this.cliente}}</td>
                 </tr>
             {{/each}}
